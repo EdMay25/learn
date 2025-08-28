@@ -96,7 +96,7 @@ export default function Home() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const data = await response.json();
+            const data: AnalysisResult = await response.json();
             displayResults(data);
 
         } catch (error) {

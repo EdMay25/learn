@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
 
     } catch (error: unknown) {
         let errorMessage = 'An unknown error occurred';
-        let errorDetails: unknown = {};
+        let errorDetails: string | object = {};
 
         if (axios.isAxiosError(error)) {
             errorMessage = 'Failed to analyze symptoms with external API';
