@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function Home() {
     const [patientAge, setPatientAge] = useState('');
@@ -105,7 +105,7 @@ export default function Home() {
         }
     };
 
-    const displayResults = (analysis: any) => {
+    const displayResults = (analysis: typeof results) => {
         setResults(analysis);
         // Прокрутка к результатам
         setTimeout(() => {

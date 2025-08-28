@@ -77,8 +77,19 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json(geminiAnalysis);
 
-    } catch (error: any) {
-        console.error('API Error:', error.response?.data || error.message);
-        return NextResponse.json({ error: 'Failed to analyze symptoms', details: error.response?.data || error.message }, { status: 500 });
+    } catch (error: unknown) {
+        let errorMessage = 'An unknown error occurred';
+        let errorDetails: any = {};
+
+        if (axios.isAxiosError(error)) {
+            errorMessage = 'Failed to analyze symptoms with external API';
+            errorDetails = error.response?.data || error.message;
+        } else if (error instanceof Error) {
+            errorMessage = 'Failed to analyze symptoms';
+            errorDetails = error.message;
+        }
+
+        console.error('API Error:', errorDetails);
+        return NextResponse.json({ error: errorMessage, details: errorDetails }, { status: 500 });
     }
 }
