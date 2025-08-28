@@ -2,6 +2,14 @@
 
 import React, { useState } from 'react';
 
+interface AnalysisResult {
+    preliminaryAssessment: string;
+    possibleCauses: string;
+    urgencyLevel: string;
+    recommendations: string;
+    doctorRecommendation: string;
+}
+
 export default function Home() {
     const [patientAge, setPatientAge] = useState('');
     const [patientGender, setPatientGender] = useState('');
@@ -9,13 +17,7 @@ export default function Home() {
     const [additionalSymptoms, setAdditionalSymptoms] = useState<string[]>([]);
     const [duration, setDuration] = useState('');
     const [loading, setLoading] = useState(false);
-    const [results, setResults] = useState<{
-        preliminaryAssessment: string;
-        possibleCauses: string;
-        urgencyLevel: string;
-        recommendations: string;
-        doctorRecommendation: string;
-    } | null>(null);
+    const [results, setResults] = useState<AnalysisResult | null>(null);
 
     const medicalKnowledgeBase = {
         symptoms: {

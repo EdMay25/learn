@@ -2,9 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
+interface AnalysisRequestBody {
+    age: string;
+    gender: string;
+    mainComplaint: string;
+    additionalSymptoms: string[];
+    duration: string;
+}
+
 export async function POST(req: NextRequest) {
     try {
-        const { age, gender, mainComplaint, additionalSymptoms, duration } = await req.json();
+        const { age, gender, mainComplaint, additionalSymptoms, duration }: AnalysisRequestBody = await req.json();
 
         // 1. Вызов RapidAPI "AI Medical Diagnosis API"
         const rapidApiUrl = 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/api/v1/diagnosis';
