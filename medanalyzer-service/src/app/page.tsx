@@ -105,7 +105,13 @@ export default function Home() {
         }
     };
 
-    const displayResults = (analysis: typeof results) => {
+    const displayResults = (analysis: {
+        preliminaryAssessment: string;
+        possibleCauses: string;
+        urgencyLevel: string;
+        recommendations: string;
+        doctorRecommendation: string;
+    } | null) => {
         setResults(analysis);
         // Прокрутка к результатам
         setTimeout(() => {
