@@ -1,0 +1,8 @@
+{
+  "builds": [
+    {
+      "src": "medanalyzer-service/package.json",
+      "use": "@vercel/next"
+    }
+  ]
+}
